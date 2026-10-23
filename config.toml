@@ -1,0 +1,10 @@
+# Edita estos valores; no necesitas cambiar los programas Python.
+[report]
+month = "2024-03"
+source = 'Z:\HDP'
+output = "informes"
+
+[mrrpro]
+layer = [640, 840]
+workers = 4
+cache = "informes/cache/mrrpro"

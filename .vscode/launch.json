@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MeteoReport: depurar mes de config.toml",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_report.py",
+            "args": ["${input:instrument}"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "subProcess": true,
+            "justMyCode": true,
+            "env": {"PYTHONUTF8": "1", "PYTHONUNBUFFERED": "1"},
+            "preLaunchTask": "MeteoReport: preparar entorno"
+        }
+    ],
+    "inputs": [
+        {"id": "instrument", "type": "pickString", "description": "Instrumento", "options": ["meteo", "disdrometer", "mrrpro", "superficie"], "default": "mrrpro"}
+    ]
+}

@@ -1,0 +1,81 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "MeteoReport: preparar entorno",
+            "type": "process",
+            "command": "uv",
+            "args": ["sync", "--locked", "--managed-python"],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": []
+        },
+        {
+            "label": "MeteoReport: ejecutar informe mensual",
+            "type": "process",
+            "command": "uv",
+            "args": ["run", "--locked", "python", "run_report.py", "${input:instrument}", "--month", "${input:month}", "--open"],
+            "options": {"cwd": "${workspaceFolder}", "env": {"PYTHONUTF8": "1", "PYTHONUNBUFFERED": "1"}},
+            "problemMatcher": [],
+            "presentation": {"reveal": "always", "panel": "dedicated", "clear": false},
+            "group": {"kind": "build", "isDefault": true}
+        },
+        {
+            "label": "MeteoReport: ejecutar periodo",
+            "type": "process",
+            "command": "uv",
+            "args": ["run", "--locked", "python", "run_report.py", "${input:instrument}", "--from-month", "${input:firstMonth}", "--to-month", "${input:lastMonth}", "--continue-on-error", "--open"],
+            "options": {"cwd": "${workspaceFolder}", "env": {"PYTHONUTF8": "1", "PYTHONUNBUFFERED": "1"}},
+            "problemMatcher": [],
+            "presentation": {"reveal": "always", "panel": "dedicated"}
+        },
+        {
+            "label": "MRR-PRO: preparar datos del periodo (sin figuras)",
+            "type": "process",
+            "command": "uv",
+            "args": ["run", "--locked", "python", "run_report.py", "mrrpro", "--from-month", "${input:firstMonth}", "--to-month", "${input:lastMonth}", "--prepare-only", "--continue-on-error"],
+            "options": {"cwd": "${workspaceFolder}", "env": {"PYTHONUTF8": "1", "PYTHONUNBUFFERED": "1"}},
+            "problemMatcher": [],
+            "presentation": {"reveal": "always", "panel": "dedicated"}
+        },
+        {
+            "label": "MRR-PRO: figuras del periodo (sin leer originales)",
+            "type": "process",
+            "command": "uv",
+            "args": ["run", "--locked", "python", "run_report.py", "mrrpro", "--from-month", "${input:firstMonth}", "--to-month", "${input:lastMonth}", "--figures-only", "--continue-on-error", "--open"],
+            "options": {"cwd": "${workspaceFolder}", "env": {"PYTHONUTF8": "1", "PYTHONUNBUFFERED": "1"}},
+            "problemMatcher": [],
+            "presentation": {"reveal": "always", "panel": "dedicated"}
+        },
+        {
+            "label": "MeteoReport: ejecutar config.toml",
+            "type": "process",
+            "command": "uv",
+            "args": ["run", "--locked", "python", "run_report.py", "${input:instrument}", "--open"],
+            "options": {"cwd": "${workspaceFolder}", "env": {"PYTHONUTF8": "1", "PYTHONUNBUFFERED": "1"}},
+            "problemMatcher": []
+        },
+        {
+            "label": "MeteoReport: comprobar parámetros sin calcular",
+            "type": "process",
+            "command": "uv",
+            "args": ["run", "--locked", "python", "run_report.py", "${input:instrument}", "--month", "${input:month}", "--dry-run"],
+            "options": {"cwd": "${workspaceFolder}", "env": {"PYTHONUTF8": "1"}},
+            "problemMatcher": []
+        },
+        {
+            "label": "MeteoReport: pruebas",
+            "type": "process",
+            "command": "uv",
+            "args": ["run", "--locked", "python", "-m", "unittest", "discover", "-s", "tests", "-v"],
+            "options": {"cwd": "${workspaceFolder}", "env": {"PYTHONUTF8": "1"}},
+            "problemMatcher": [],
+            "group": "test"
+        }
+    ],
+    "inputs": [
+        {"id": "instrument", "type": "pickString", "description": "Instrumento", "options": ["meteo", "disdrometer", "mrrpro", "superficie"], "default": "mrrpro"},
+        {"id": "month", "type": "promptString", "description": "Mes (AAAA-MM)", "default": "2024-03"},
+        {"id": "firstMonth", "type": "promptString", "description": "Primer mes incluido (AAAA-MM)", "default": "2024-03"},
+        {"id": "lastMonth", "type": "promptString", "description": "Último mes incluido (AAAA-MM)", "default": "2024-05"}
+    ]
+}
