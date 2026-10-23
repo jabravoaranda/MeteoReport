@@ -1,0 +1,69 @@
+\section{Disponibilidad de las observaciones}
+\label{sec:disponibilidad}
+
+La disponibilidad se evalúa para cada instrumento y mes del periodo analizado.
+Expresa la proporción de observaciones que pueden utilizarse de acuerdo con los
+criterios definidos para cada producto. No equivale al tiempo de funcionamiento
+del instrumento ni permite interpretar los intervalos sin datos como ausencia
+de precipitación.
+
+El calendario de la Figura~\ref{fig:calendario-disponibilidad} ofrece una
+visión conjunta de la cobertura temporal. La Tabla~\ref{tab:disponibilidad-mensual}
+recoge los valores mensuales y permite distinguir entre meses no analizados,
+meses analizados sin observaciones válidas y meses con cobertura parcial o
+completa.
+
+\IfFileExists{figuras/calendario_disponibilidad.png}{%
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{calendario_disponibilidad.png}
+    \caption{Disponibilidad temporal de las observaciones por instrumento
+      durante el periodo analizado. Los intervalos sin registros no se
+      interpretan como ausencia de precipitación.}
+    \label{fig:calendario-disponibilidad}
+  \end{figure}
+}{%
+  \begin{figure}[htbp]
+    \centering
+    \fbox{\parbox{0.88\textwidth}{\centering
+      Calendario conjunto pendiente de generación a partir de los resultados
+      preparados del periodo.}}
+    \caption{Disponibilidad temporal por instrumento. Producto pendiente.}
+    \label{fig:calendario-disponibilidad}
+  \end{figure}
+}
+
+\subsection{Resumen mensual}
+\label{sec:resumen-disponibilidad}
+
+\IfFileExists{tablas/disponibilidad_mensual.tex}{%
+  \begin{table}[htbp]
+    \centering
+    \caption{Resumen mensual de disponibilidad por instrumento.}
+    \label{tab:disponibilidad-mensual}
+    \input{tablas/disponibilidad_mensual}
+  \end{table}
+}{%
+  \begin{table}[htbp]
+    \centering
+    \caption{Resumen mensual de disponibilidad por instrumento. Producto
+      pendiente.}
+    \label{tab:disponibilidad-mensual}
+    \begin{tabular}{@{}ll@{}}
+      \toprule
+      Producto & Estado \\
+      \midrule
+      Tabla mensual común & Pendiente de generación \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+}
+
+En la tabla, un guion indica que no existe un resultado preparado para ese mes
+y producto. Un valor de 0\,\% indica que el mes sí está analizado, pero no contiene
+observaciones válidas según el criterio correspondiente.
+
+Ambos productos se generan a partir de los resultados mensuales preparados. Si
+alguno no existe, el documento muestra un sustituto que identifica expresamente
+el producto pendiente. No se extraen conclusiones sobre meses concretos sin
+resultados preparados que las respalden.

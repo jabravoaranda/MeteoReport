@@ -63,6 +63,15 @@
             "problemMatcher": []
         },
         {
+            "label": "MeteoReport: generar disponibilidad (sin leer originales)",
+            "type": "process",
+            "command": "uv",
+            "args": ["run", "--locked", "python", "availability.py", "--from-month", "${input:firstMonth}", "--to-month", "${input:lastMonth}"],
+            "options": {"cwd": "${workspaceFolder}", "env": {"PYTHONUTF8": "1", "MPLBACKEND": "Agg"}},
+            "problemMatcher": [],
+            "presentation": {"reveal": "always", "panel": "dedicated"}
+        },
+        {
             "label": "MeteoReport: pruebas",
             "type": "process",
             "command": "uv",

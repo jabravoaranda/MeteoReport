@@ -94,6 +94,22 @@ generan figuras seguidas, como antes. Las dos fases tienen tareas específicas e
 VS Code, con nombres **MRR-PRO: preparar datos del periodo (sin figuras)** y
 **MRR-PRO: figuras del periodo (sin leer originales)**.
 
+### Disponibilidad común para el informe
+
+Después de generar los resultados mensuales de los instrumentos, la disponibilidad
+común se crea sin volver a leer TOA5 ni NetCDF:
+
+```powershell
+uv run --locked python availability.py --from-month 2026-01 --to-month 2026-12
+```
+
+El programa lee únicamente los CSV mensuales guardados bajo `informes/` y escribe
+`docs/informe_2026/figuras/calendario_disponibilidad.png` y
+`docs/informe_2026/tablas/disponibilidad_mensual.tex`. La tarea de VS Code
+**MeteoReport: generar disponibilidad (sin leer originales)** ejecuta el mismo
+proceso. Un mes sin CSV se conserva como no analizado y no se convierte en
+cobertura cero.
+
 Los archivos locales `informes/cache/mrrpro/prepared_*.npz` conservan las muestras,
 no solo sus promedios: permiten recalcular percentiles, filtros y presentación.
 La fase de figuras no comprueba la unidad de red y puede ejecutarse sin acceso a

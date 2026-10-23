@@ -129,7 +129,7 @@ no hace falta aprobar de nuevo cada paso técnico ni cada ejecución previamente
 | MRR-PRO: preparación persistente y figuras sin consultar originales | Disponible |
 | MRR-PRO: figura anual con todas las cajas de varios meses | Pendiente; el piloto actual muestra un mes y los otros quedan grises |
 | Preparación persistente independiente para superficie/Parsivel | Pendiente; los analizadores actuales leen sus TOA5 al ejecutarse |
-| Calendario común de disponibilidad entre instrumentos | Pendiente de implementación |
+| Calendario y tabla común de disponibilidad | Disponible a partir de los CSV mensuales; no consulta originales |
 | Plantilla LaTeX, composición automática y exportación a PDF | Pendiente de implementación |
 
 Primera implementación del PDF: una edición de muestra con resultados ya generados,
